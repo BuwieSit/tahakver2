@@ -15,6 +15,7 @@ import Partners from './pages/TouristPages/Partners';
 import FAQs from './pages/TouristPages/FAQs';
 import Booking from './pages/TouristPages/Booking';
 import PrivacyPolicy from './pages/TouristPages/PrivacyPolicy';
+import Profile from './pages/TouristPages/Profile';
 import LoadingScreen from './components/LoadingScreen';
 
 const router = createBrowserRouter([
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
   {path: "/faqs", element: <FAQs/>},
   {path: "/booking", element: <Booking/>},
   {path: "/privacy-policy", element: <PrivacyPolicy/>},
+  {path: "/profile", element: <Profile/>},
   {path: "/access", element: <LandingPage/>},
 ])
 
