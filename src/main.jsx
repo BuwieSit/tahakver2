@@ -12,6 +12,7 @@ import Packages from './pages/TouristPages/Packages';
 import Create from './pages/TouristPages/Create';
 import Partners from './pages/TouristPages/Partners';
 import FAQs from './pages/TouristPages/FAQs';
+import Booking from './pages/TouristPages/Booking';
 import LoadingScreen from './components/LoadingScreen';
 
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
   {path: "/create", element: <Create/>},
   {path: "/partners", element: <Partners/>},
   {path: "/faqs", element: <FAQs/>},
+  {path: "/booking", element: <Booking/>},
   {path: "/access", element: <LandingPage/>},
 ])
 

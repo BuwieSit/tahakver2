@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 import bonfire from "../../assets/pictures/bonfire.jpg";
 import falls from "../../assets/pictures/falls.jpg";
 import audiovisual from "../../assets/pictures/audiovisual.jpg";
@@ -12,6 +13,7 @@ import hilot from "../../assets/pictures/hilot.png";
 import { Star, Clock, Users } from 'lucide-react';
 
 export default function Packages() {
+    const navigate = useNavigate();
     const packages = [
         {
             title: "Ugnayan: The Connection",
@@ -99,7 +101,7 @@ export default function Packages() {
                                     <div className="flex text-amber-500">
                                         {[1,2,3,4,5].map(s => <Star key={s} size={16} fill="currentColor"/>)}
                                     </div>
-                                    <button className="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">
+                                    <button onClick={() => navigate('/booking')} className="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors">
                                         Book Now
                                     </button>
                                 </div>
