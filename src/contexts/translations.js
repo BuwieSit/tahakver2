@@ -1,0 +1,47 @@
+export const translations = {
+    EN: {
+        home: "Home",
+        ourStory: "Our Story",
+        packages: "Packages",
+        create: "Create",
+        partners: "Partners",
+        faqs: "FAQs",
+        signIn: "Sign In",
+    },
+    UK: {
+        home: "Home",
+        ourStory: "Our Story",
+        packages: "Packages",
+        create: "Create",
+        partners: "Partners",
+        faqs: "FAQs",
+        signIn: "Sign In",
+    },
+    FR: {
+        home: "Accueil",
+        ourStory: "Notre Histoire",
+        packages: "Forfaits",
+        create: "Créer",
+        partners: "Partenaires",
+        faqs: "FAQ",
+        signIn: "Connexion",
+    },
+    KO: {
+        home: "홈",
+        ourStory: "우리의 이야기",
+        packages: "패키지",
+        create: "만들기",
+        partners: "파트너",
+        faqs: "자주 묻는 질문",
+        signIn: "로그인",
+    },
+    JA: {
+        home: "ホーム",
+        ourStory: "ストーリー",
+        packages: "パッケージ",
+        create: "作成",
+        partners: "パートナー",
+        faqs: "よくある質問",
+        signIn: "ログイン",
+    }
+};

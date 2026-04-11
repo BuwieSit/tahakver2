@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './styles.css';
+import { LanguageProvider } from './contexts/LanguageContext';
 import LandingPage from './pages/LoginRegister';
 import Home from './pages/TouristPages/Home';
 import OurStory from './pages/TouristPages/OurStory';
@@ -39,7 +40,11 @@ function App() {
 
   if (loading) return <LoadingScreen />;
 
-  return <RouterProvider router={router}/>;
+  return (
+    <LanguageProvider>
+        <RouterProvider router={router}/>
+    </LanguageProvider>
+  );
 }
 
 
