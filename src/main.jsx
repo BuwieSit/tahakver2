@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -12,6 +12,7 @@ import Packages from './pages/TouristPages/Packages';
 import Create from './pages/TouristPages/Create';
 import Partners from './pages/TouristPages/Partners';
 import FAQs from './pages/TouristPages/FAQs';
+import LoadingScreen from './components/LoadingScreen';
 
 const router = createBrowserRouter([
   {path: "/", element: <Home/>},
@@ -23,9 +24,25 @@ const router = createBrowserRouter([
   {path: "/access", element: <LandingPage/>},
 ])
 
+function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial app load
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <LoadingScreen />;
+
+  return <RouterProvider router={router}/>;
+}
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <App />
   </StrictMode>,
 )

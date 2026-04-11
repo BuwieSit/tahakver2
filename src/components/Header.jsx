@@ -9,20 +9,36 @@ export default function Header() {
     const isScrolled = scrollY > 50;
     const location = useLocation();
 
+    // Define pages that have a dark hero section at the top
+    const isHeroPage = location.pathname === '/' || location.pathname === '/our-story';
+    
+    // Determine text and button colors based on scroll and page type
+    const textColor = isScrolled 
+        ? "text-accent" 
+        : (isHeroPage ? "text-white" : "text-accent");
+    
+    const navItemActiveColor = isScrolled 
+        ? "text-primary bg-primary/10" 
+        : (isHeroPage ? "text-white bg-white/20" : "text-primary bg-primary/10");
+
+    const navItemIdleColor = isScrolled 
+        ? "text-accent hover:text-primary hover:bg-primary/5" 
+        : (isHeroPage ? "text-white/80 hover:text-white hover:bg-white/10" : "text-accent hover:text-primary hover:bg-primary/5");
+
     return (
         <header className={`
             fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ease-in-out px-8 md:px-16
             ${isScrolled 
-                ? "py-3 bg-white/80 backdrop-blur-lg shadow-lg border-b border-primary/5" 
+                ? "py-3 bg-white/90 backdrop-blur-xl shadow-lg border-b border-primary/10" 
                 : "py-6 bg-transparent"}
         `}>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo Section */}
                 <Link to="/" className="flex items-center gap-3 group">
-                    <div className="relative overflow-hidden rounded-xl bg-white/10 p-1 transition-transform group-hover:scale-110">
+                    <div className={`relative overflow-hidden rounded-xl p-1 transition-transform group-hover:scale-110 shadow-sm ${isScrolled || !isHeroPage ? "bg-primary/20" : "bg-white/20"}`}>
                         <img src={logo} alt="TahaK Logo" className="w-12 h-12 object-contain" />
                     </div>
-                    <span className={`text-2xl font-primary-title font-bold tracking-tight transition-colors ${isScrolled ? "text-accent" : "text-white drop-shadow-md"}`}>
+                    <span className={`text-2xl font-primary-title font-bold tracking-tight ${textColor} drop-shadow-sm`}>
                         TahaK
                     </span>
                 </Link>
@@ -30,12 +46,12 @@ export default function Header() {
                 {/* Navigation Section */}
                 <nav className="hidden lg:block">
                     <ul className="flex items-center gap-2">
-                        <NavItem link={'/'} active={location.pathname === '/'} isScrolled={isScrolled}>Home</NavItem>
-                        <NavItem link={'/our-story'} active={location.pathname === '/our-story'} isScrolled={isScrolled}>Our Story</NavItem>
-                        <NavItem link={'/packages'} active={location.pathname === '/packages'} isScrolled={isScrolled}>Packages</NavItem>
-                        <NavItem link={'/create'} active={location.pathname === '/create'} isScrolled={isScrolled}>Create</NavItem>
-                        <NavItem link={'/partners'} active={location.pathname === '/partners'} isScrolled={isScrolled}>Partners</NavItem>
-                        <NavItem link={'/faqs'} active={location.pathname === '/faqs'} isScrolled={isScrolled}>FAQs</NavItem>
+                        <NavItem link={'/'} active={location.pathname === '/'} idleClass={navItemIdleColor} activeClass={navItemActiveColor} isScrolled={isScrolled} isHeroPage={isHeroPage} />
+                        <NavItem link={'/our-story'} active={location.pathname === '/our-story'} idleClass={navItemIdleColor} activeClass={navItemActiveColor} isScrolled={isScrolled} isHeroPage={isHeroPage} />
+                        <NavItem link={'/packages'} active={location.pathname === '/packages'} idleClass={navItemIdleColor} activeClass={navItemActiveColor} isScrolled={isScrolled} isHeroPage={isHeroPage} />
+                        <NavItem link={'/create'} active={location.pathname === '/create'} idleClass={navItemIdleColor} activeClass={navItemActiveColor} isScrolled={isScrolled} isHeroPage={isHeroPage} />
+                        <NavItem link={'/partners'} active={location.pathname === '/partners'} idleClass={navItemIdleColor} activeClass={navItemActiveColor} isScrolled={isScrolled} isHeroPage={isHeroPage} />
+                        <NavItem link={'/faqs'} active={location.pathname === '/faqs'} idleClass={navItemIdleColor} activeClass={navItemActiveColor} isScrolled={isScrolled} isHeroPage={isHeroPage} />
                     </ul>
                 </nav>
 
@@ -43,10 +59,8 @@ export default function Header() {
                 <div className="flex items-center gap-4">
                     <Link to="/access">
                         <button className={`
-                            px-8 py-2.5 rounded-full font-bold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95
-                            ${isScrolled 
-                                ? "bg-primary text-white shadow-md hover:bg-primary/90" 
-                                : "bg-white/20 text-white backdrop-blur-md border border-white/30 hover:bg-white/30"}
+                            px-8 py-2.5 rounded-full font-bold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md
+                            ${isScrolled || !isHeroPage ? "bg-primary text-white hover:bg-primary/90" : "bg-white text-primary hover:bg-white/90"}
                         `}>
                             Sign In
                         </button>
@@ -57,24 +71,28 @@ export default function Header() {
     );
 }
 
-export function NavItem({ children, link, active, isScrolled }) {
+export function NavItem({ link, active, idleClass, activeClass, isScrolled, isHeroPage }) {
+    const labelMap = {
+        '/': 'Home',
+        '/our-story': 'Our Story',
+        '/packages': 'Packages',
+        '/create': 'Create',
+        '/partners': 'Partners',
+        '/faqs': 'FAQs'
+    };
+
     return (
         <li>
             <Link 
                 to={link} 
                 className={`
                     relative px-5 py-2 rounded-full text-sm font-bold transition-all duration-300
-                    ${active 
-                        ? (isScrolled ? "text-primary bg-primary/5" : "text-white bg-white/20") 
-                        : (isScrolled ? "text-accent/70 hover:text-primary hover:bg-primary/5" : "text-white/80 hover:text-white hover:bg-white/10")}
+                    ${active ? activeClass : idleClass}
                 `}
             >
-                {children}
+                {labelMap[link]}
                 {active && (
-                    <span className={`
-                        absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full
-                        ${isScrolled ? "bg-primary" : "bg-white"}
-                    `} />
+                    <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full shadow-sm ${isScrolled || !isHeroPage ? "bg-primary" : "bg-white"}`} />
                 )}
             </Link>
         </li>
