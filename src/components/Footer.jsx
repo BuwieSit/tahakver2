@@ -1,12 +1,10 @@
 import logo from '../assets/tahak_logo.png';
 import { Link } from 'react-router-dom';
-import ContactForm from './ContactForm';
 
 export default function Footer() {
     return (
         <footer className="bg-accent text-white py-12 px-10">
             <div className="max-w-7xl mx-auto">
-                <ContactForm />
                 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mt-12">
                     <div className="flex flex-col gap-4">

@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
 import KALIPI_IMG from "../../assets/KALIPI.jpg";
 import LABB_IMG from "../../assets/LABB.jpg";
 import PEACENATURE_IMG from "../../assets/peace_in_nature.jpg";
@@ -65,6 +66,7 @@ export default function Partners() {
                     </div>
                 </section>
             </main>
+            <ContactForm />
             <Footer />
         </div>
     );

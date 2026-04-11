@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
 import mountain from '../../assets/mountain.jpg';
 import { CtaButton } from "../../components/Button";
 import useInView from "../../hooks/useInView";
@@ -121,6 +122,7 @@ export default function Home() {
                 </div>
             </section>
 
+            <ContactForm />
             <Footer />
         </div>
     )

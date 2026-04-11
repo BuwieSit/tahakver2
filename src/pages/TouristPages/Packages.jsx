@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
 import { useNavigate } from "react-router-dom";
 import bonfire from "../../assets/pictures/bonfire.jpg";
 import falls from "../../assets/pictures/falls.jpg";
@@ -111,6 +112,7 @@ export default function Packages() {
                 </div>
             </main>
 
+            <ContactForm />
             <Footer />
         </div>
     );

@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
 
 export default function PrivacyPolicy() {
     return (
@@ -17,6 +18,7 @@ export default function PrivacyPolicy() {
                     <p>We implement security measures to ensure your data is safe and never shared with unauthorized third parties.</p>
                 </div>
             </main>
+            <ContactForm />
             <Footer />
         </div>
     );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Users, Mail, Phone, User } from "lucide-react";
 import { useUnsavedChanges } from "../../hooks/useUnsavedChanges";
@@ -108,6 +109,7 @@ export default function Booking() {
                     </form>
                 </div>
             </main>
+            <ContactForm />
             <Footer />
         </div>
     );
