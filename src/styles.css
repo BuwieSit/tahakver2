@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+@import 'animate.css';
+
+
+@font-face {
+    font-family: 'Libre';
+    src: url('./assets/fonts/LibreBaskerville-Regular.ttf');
+}
+@font-face {
+    font-family: 'GoogleSans';
+    src: url('./assets/fonts/GoogleSans-Regular.ttf');
+}
+
+@theme {
+    --color-primary: #15803d;
+    --color-background: #f0fdf4;
+    --color-accent: #064e3b;
+    --color-border: #dcfce7;
+    --color-primary-text-color: #022c22;
+    --color-surface: #FFFFFF;
+
+    --text-title-size: 2.5rem;
+    --text-primary-size: 1rem;
+    --text-navtext-size: 1rem;
+    --font-primary-title: 'Libre', serif;
+    --font-primary-text: 'GoogleSans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: var(--color-surface);
+    overflow-x: hidden;
+}
