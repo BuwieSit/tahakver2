@@ -6,9 +6,7 @@ import { CtaButton } from "../../components/Button";
 import useInView from "../../hooks/useInView";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import bonfire from "../../assets/pictures/bonfire.jpg";
 import falls from "../../assets/pictures/falls.jpg";
-import audiovisual from "../../assets/pictures/audiovisual.jpg";
 import farm from "../../assets/pictures/farm.jpg";
 import forestbath from "../../assets/pictures/forestbath.jpg";
 import trek from "../../assets/pictures/trek.jpg";
@@ -40,12 +38,12 @@ export default function Home() {
                 <img src={mountain} alt="Nature Background" className="absolute inset-0 w-full h-full object-cover z-0" />
                 <div className="absolute inset-0 bg-accent/30 z-10" />
                 
-                <div className="relative z-20 text-center text-white px-4">
-                    <h1 className="text-[10rem] font-primary-title mb-0 drop-shadow-2xl leading-none">Tahak</h1>
-                    <p className="text-2xl font-primary-text font-medium mb-12 italic opacity-90 tracking-wide">Tahanan sa Kalikasan</p>
+                <div className="relative z-20 text-center text-white px-6">
+                    <h1 className="text-6xl sm:text-8xl md:text-[10rem] font-primary-title mb-2 md:mb-0 drop-shadow-2xl leading-none">Tahak</h1>
+                    <p className="text-lg sm:text-xl md:text-2xl font-primary-text font-medium mb-8 md:mb-12 italic opacity-90 tracking-wide">Tahanan sa Kalikasan</p>
                     <CtaButton 
                         onClick={() => navigate('/packages')}
-                        className="bg-primary hover:bg-primary/90 text-white px-12 py-4 text-xl rounded-full transition-all transform hover:scale-105 shadow-xl"
+                        className="bg-primary hover:bg-primary/90 text-white px-8 py-3 md:px-12 md:py-4 text-lg md:text-xl rounded-full transition-all transform hover:scale-105 shadow-xl"
                     >
                         Experience your healing
                     </CtaButton>
@@ -59,45 +57,45 @@ export default function Home() {
             </section>
 
             {/* Features Section */}
-            <section className="py-24 px-10 max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <section className="py-16 md:py-24 px-6 md:px-10 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                     <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
+                        <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
                             <TreePine size={32} />
                         </div>
-                        <h3 className="text-xl font-bold text-accent mb-2">Sustainable</h3>
+                        <h3 className="text-lg md:text-xl font-bold text-accent mb-2">Sustainable</h3>
                         <p className="text-sm text-primary-text-color opacity-70">Eco-conscious travel that preserves our natural heritage.</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
+                        <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
                             <Mountain size={32} />
                         </div>
-                        <h3 className="text-xl font-bold text-accent mb-2">Authentic</h3>
+                        <h3 className="text-lg md:text-xl font-bold text-accent mb-2">Authentic</h3>
                         <p className="text-sm text-primary-text-color opacity-70">Real connections with local culture and mountain life.</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
+                        <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
                             <Map size={32} />
                         </div>
-                        <h3 className="text-xl font-bold text-accent mb-2">Guided</h3>
+                        <h3 className="text-lg md:text-xl font-bold text-accent mb-2">Guided</h3>
                         <p className="text-sm text-primary-text-color opacity-70">Expert guides to ensure safety and deep exploration.</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
+                        <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6">
                             <Users size={32} />
                         </div>
-                        <h3 className="text-xl font-bold text-accent mb-2">Community</h3>
+                        <h3 className="text-lg md:text-xl font-bold text-accent mb-2">Community</h3>
                         <p className="text-sm text-primary-text-color opacity-70">Support local livelihoods through your visit.</p>
                     </div>
                 </div>
             </section>
 
             {/* Gallery/Experience Section */}
-            <section className="bg-white py-24 px-10">
+            <section className="bg-white py-16 md:py-24 px-6 md:px-10">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex justify-between items-end mb-16">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 md:mb-16">
                         <div>
-                            <h2 ref={ref} className={`text-5xl font-primary-title text-accent mb-4 ${IsInView ? "animate__animated animate__fadeInLeft" : "opacity-0"}`}>
+                            <h2 ref={ref} className={`text-4xl md:text-5xl font-primary-title text-accent mb-4 ${IsInView ? "animate__animated animate__fadeInLeft" : "opacity-0"}`}>
                                 Healing Experiences
                             </h2>
                             <p className="text-primary-text-color opacity-70 max-w-lg">
@@ -107,14 +105,18 @@ export default function Home() {
                         <CtaButton onClick={() => navigate('/packages')} className="hidden md:block">View all Packages</CtaButton>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                         {experiences.map((exp, i) => (
-                            <div key={i} className="group relative overflow-hidden rounded-3xl shadow-lg transition-all hover:-translate-y-2">
+                            <div 
+                                key={i} 
+                                onClick={() => navigate('/packages')}
+                                className="group relative overflow-hidden rounded-3xl shadow-lg transition-all hover:-translate-y-2 cursor-pointer"
+                            >
                                 <img src={exp.img} alt={exp.title} className="w-full aspect-[3/4] object-cover transition-transform group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent md:from-black/80 md:via-transparent md:to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
                                     <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
                                     <p className="text-sm text-white/80 mb-4">{exp.desc}</p>
-                                    <button onClick={() => navigate('/packages')} className="text-primary font-bold text-sm bg-white px-4 py-2 rounded-full w-fit">Learn More</button>
+                                    <button className="text-primary font-bold text-sm bg-white px-4 py-2 rounded-full w-fit">Learn More</button>
                                 </div>
                             </div>
                         ))}

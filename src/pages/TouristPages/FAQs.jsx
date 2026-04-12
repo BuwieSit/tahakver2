@@ -17,20 +17,20 @@ export default function FAQs() {
     return (
         <div className="min-h-screen bg-background">
             <Header />
-            <main className="pt-32 pb-20 px-10 max-w-4xl mx-auto">
-                <div className="text-center mb-16">
-                    <h1 className="text-5xl font-primary-title text-accent mb-4">Frequently Asked Questions</h1>
-                    <p className="text-primary-text-color opacity-70">Find quick answers to common questions about your Tahak experience.</p>
+            <main className="pt-24 md:pt-32 pb-16 md:pb-20 px-6 md:px-10 max-w-4xl mx-auto">
+                <div className="text-center mb-12 md:mb-16">
+                    <h1 className="text-3xl md:text-5xl font-primary-title text-accent mb-4">Frequently Asked Questions</h1>
+                    <p className="text-sm md:text-base text-primary-text-color opacity-70">Find quick answers to common questions about your Tahak experience.</p>
                 </div>
                 
-                <div className="grid gap-6">
+                <div className="grid gap-4 md:gap-6">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-border transition hover:shadow-md">
-                            <h3 className="text-xl font-bold text-accent mb-3 flex items-start">
-                                <span className="text-primary mr-3 text-2xl">Q.</span> 
+                        <div key={index} className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-border transition hover:shadow-md">
+                            <h3 className="text-lg md:text-xl font-bold text-accent mb-3 flex items-start">
+                                <span className="text-primary mr-3 text-xl md:text-2xl font-bold">Q.</span> 
                                 {faq.q}
                             </h3>
-                            <p className="text-primary-text-color pl-9">{faq.a}</p>
+                            <p className="text-sm md:text-base text-primary-text-color pl-7 md:pl-9 opacity-80 leading-relaxed">{faq.a}</p>
                         </div>
                     ))}
                 </div>

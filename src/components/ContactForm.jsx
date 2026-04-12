@@ -14,11 +14,11 @@ export default function ContactForm() {
     };
 
     return (
-        <section className="py-20 px-10 max-w-4xl mx-auto">
-            <div className="bg-white p-12 rounded-[2rem] shadow-xl border border-border">
-                <div className="text-center mb-10">
-                    <h3 className="text-4xl font-primary-title text-accent mb-4">Have other inquiries?</h3>
-                    <p className="text-primary-text-color opacity-70">We're here to help. Reach out to us with any questions.</p>
+        <section className="py-12 md:py-20 px-6 md:px-10 max-w-4xl mx-auto w-full">
+            <div className="bg-white p-6 md:p-12 rounded-[2rem] shadow-xl border border-border">
+                <div className="text-center mb-8 md:mb-10">
+                    <h3 className="text-2xl md:text-4xl font-primary-title text-accent mb-4">Have other inquiries?</h3>
+                    <p className="text-sm md:text-base text-primary-text-color opacity-70">We're here to help. Reach out to us with any questions.</p>
                 </div>
                 
                 {status === "sent" ? (

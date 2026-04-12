@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer className="bg-accent text-white py-12 px-10">
+        <footer className="bg-accent text-white py-12 md:py-16 px-6 md:px-10">
             <div className="max-w-7xl mx-auto">
                 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mt-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
                     <div className="flex flex-col gap-4">
                         <img src={logo} alt="Tahak Logo" className="w-20 invert grayscale brightness-200" />
                         <p className="text-sm opacity-80">

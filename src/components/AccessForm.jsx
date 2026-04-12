@@ -41,8 +41,8 @@ export default function AccessForm() {
     };
 
     return (
-        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-8 rounded-3xl bg-black/60 backdrop-blur-2xl text-white shadow-2xl border border-white/10">
-            <h2 className="text-3xl font-semibold mb-6 text-center">{isSignUp ? "Create Account" : "Welcome Back"}</h2>
+        <div className="w-full max-w-md p-6 md:p-8 rounded-3xl bg-black/60 backdrop-blur-2xl text-white shadow-2xl border border-white/10 mx-auto">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">{isSignUp ? "Create Account" : "Welcome Back"}</h2>
             {error && <p className="text-red-400 text-sm mb-4 text-center bg-red-950/50 p-2 rounded">{error}</p>}
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 {isSignUp && (
