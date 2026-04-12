@@ -23,13 +23,19 @@ import AdminDashboard from './pages/AdminPages/Dashboard';
 import AdminLayout from './layouts/AdminLayout';
 import ManagePackages from './pages/AdminPages/ManagePackages';
 import ManageActivities from './pages/AdminPages/ManageActivities';
+import MockGoogleAd from './components/MockGoogleAd';
+import { useLocation } from 'react-router-dom';
 
-const Layout = () => (
-  <>
-    <ScrollToTop />
-    <Outlet />
-  </>
-);
+const Layout = () => {
+  const location = useLocation();
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+      {!location.pathname.startsWith('/admin') && <MockGoogleAd />}
+    </>
+  );
+};
 
 const router = createBrowserRouter([
   {
