@@ -13,7 +13,7 @@ export default function AccessForm() {
     const navigate = useNavigate();
 
     const isDirty = formData.email !== "" || formData.password !== "" || formData.fullName !== "";
-    useUnsavedChanges(isDirty);
+    useUnsavedChanges(isDirty, loading);
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 // ... rest of component
@@ -31,6 +31,14 @@ export default function AccessForm() {
 
         setLoading(true);
         setError("");
+
+        // Check for hardcoded admin account
+        if (!isSignUp && formData.email === "admin@tahak.com" && formData.password === "admin123") {
+            setLoading(false);
+            navigate('/admin');
+            return;
+        }
+
         const { error: authError } = isSignUp 
             ? await supabase.auth.signUp({ email: formData.email, password: formData.password, options: { data: { full_name: formData.fullName } } })
             : await supabase.auth.signInWithPassword({ email: formData.email, password: formData.password });

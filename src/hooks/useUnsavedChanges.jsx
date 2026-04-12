@@ -4,16 +4,21 @@ import { useBlocker } from 'react-router-dom';
 /**
  * Hook to block navigation if form has unsaved changes.
  * @param {boolean} isDirty - Indicates if the form has unsaved changes.
+ * @param {boolean} isSubmitting - Indicates if the form is currently being submitted.
  */
-export function useUnsavedChanges(isDirty) {
+export function useUnsavedChanges(isDirty, isSubmitting = false) {
     // Blocks internal navigation
     let blocker = useBlocker(
         ({ currentLocation, nextLocation }) =>
-            isDirty && currentLocation.pathname !== nextLocation.pathname
+            isDirty && !isSubmitting && currentLocation.pathname !== nextLocation.pathname
     );
 
     useEffect(() => {
         if (blocker.state === "blocked") {
+            if (isSubmitting) {
+                blocker.proceed();
+                return;
+            }
             const proceed = window.confirm("You have unsaved changes. Are you sure you want to leave?");
             if (proceed) {
                 blocker.proceed();
@@ -21,12 +26,12 @@ export function useUnsavedChanges(isDirty) {
                 blocker.reset();
             }
         }
-    }, [blocker]);
+    }, [blocker, isSubmitting]);
 
     // Blocks refresh/close
     useEffect(() => {
         const handleBeforeUnload = (e) => {
-            if (isDirty) {
+            if (isDirty && !isSubmitting) {
                 e.preventDefault();
                 e.returnValue = '';
             }
