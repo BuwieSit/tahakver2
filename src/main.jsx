@@ -24,15 +24,23 @@ import AdminLayout from './layouts/AdminLayout';
 import ManagePackages from './pages/AdminPages/ManagePackages';
 import ManageActivities from './pages/AdminPages/ManageActivities';
 import MockGoogleAd from './components/MockGoogleAd';
+import SupportChatbot from './components/SupportChatbot';
 import { useLocation } from 'react-router-dom';
 
 const Layout = () => {
   const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
   return (
     <>
       <ScrollToTop />
       <Outlet />
-      {!location.pathname.startsWith('/admin') && <MockGoogleAd />}
+      {!isAdmin && (
+        <>
+          <MockGoogleAd />
+          <SupportChatbot />
+        </>
+      )}
     </>
   );
 };
