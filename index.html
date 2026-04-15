@@ -11,9 +11,19 @@
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        
+        // Prevent tawk.to from changing the page title
+        var originalTitle = document.title;
         Tawk_API.onBeforeLoad = function(){
             Tawk_API.hideWidget();
         };
+        Tawk_API.onChatMessageAgent = function(){
+            setTimeout(function(){ document.title = originalTitle; }, 100);
+        };
+        Tawk_API.onChatMessageSystem = function(){
+            setTimeout(function(){ document.title = originalTitle; }, 100);
+        };
+
         (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
         s1.async=true;
