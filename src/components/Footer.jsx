@@ -1,5 +1,8 @@
 import logo from '../assets/tahak_logo.png';
 import { Link } from 'react-router-dom';
+import fbIcon from '../assets/fb_icon.png';
+import emailIcon from '../assets/email_icon.png';
+import igIcon from '../assets/ig_icon.png';
 
 export default function Footer() {
     return (
@@ -8,7 +11,7 @@ export default function Footer() {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
                     <div className="flex flex-col gap-4">
-                        <img src={logo} alt="Tahak Logo" className="w-20 invert grayscale brightness-200" />
+                        <img src={logo} alt="Tahak Logo" className="w-20" />
                         <p className="text-sm opacity-80">
                             Experience the healing power of nature. Tahak is your gateway to the most authentic and sustainable tourism experiences.
                         </p>
@@ -33,12 +36,21 @@ export default function Footer() {
                     </div>
                     
                     <div>
-                        <h4 className="font-bold mb-4">Follow Us</h4>
-                        <div className="flex gap-4">
-                            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">FB</div>
-                            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">IG</div>
-                            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">TW</div>
-                        </div>
+                        <h4 className="font-bold mb-4">Contacts</h4>
+                        <ul className="space-y-3 text-sm opacity-80">
+                            <li>
+                                <a href="mailto:tahak.kalikasan@gmail.com" className="hover:underline flex items-center gap-2">
+                                    <img src={emailIcon} alt="Email" className="w-4 h-4" />
+                                    <span>tahak.kalikasan@gmail.com</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/profile.php?id=61578753895819" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-2">
+                                    <img src={fbIcon} alt="Facebook" className="w-4 h-4" />
+                                    <span>TahaK</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

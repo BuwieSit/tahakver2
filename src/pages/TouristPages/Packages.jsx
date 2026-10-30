@@ -2,66 +2,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
 import { useNavigate } from "react-router-dom";
-import farm from "../../assets/pictures/farm.jpg";
-import forestbath from "../../assets/pictures/forestbath.jpg";
-import trek from "../../assets/pictures/trek.jpg";
-import tea from "../../assets/pictures/tea.jpg";
-import sound from "../../assets/pictures/sound.jpg";
-import hilot from "../../assets/pictures/hilot.png";
 import { Star, Clock, Users } from 'lucide-react';
+import { useData } from "../../contexts/DataContext";
+import forestbath from "../../assets/pictures/forestbath.jpg";
 
 export default function Packages() {
     const navigate = useNavigate();
-    const packages = [
-        {
-            title: "Ugnayan: The Connection",
-            price: "₱2,500",
-            img: forestbath,
-            duration: "Day Trip",
-            group: "2-4 persons",
-            desc: "A full day of forest bathing, guided meditation, and organic lunch."
-        },
-        {
-            title: "Sama: Community Stay",
-            price: "₱4,800",
-            img: farm,
-            duration: "2 Days, 1 Night",
-            group: "Max 6 persons",
-            desc: "Immerse in local farm life, learn traditional crafts, and sleep under the stars."
-        },
-        {
-            title: "Kapwa: Shared Journey",
-            price: "₱7,200",
-            img: trek,
-            duration: "3 Days, 2 Nights",
-            group: "Group of 10",
-            desc: "Multi-day mountain trek with professional guides and tribal storytelling."
-        },
-        {
-            title: "The Sound of Silence",
-            price: "₱1,800",
-            img: sound,
-            duration: "4 Hours",
-            group: "Max 12 persons",
-            desc: "A therapeutic sound bath session in the middle of a pine forest."
-        },
-        {
-            title: "Ancestral Healing (Hilot)",
-            price: "₱3,200",
-            img: hilot,
-            duration: "Full Day",
-            group: "Private",
-            desc: "Traditional Hilot massage and herbal bath experience at the falls."
-        },
-        {
-            title: "Mountain Tea Ritual",
-            price: "₱1,200",
-            img: tea,
-            duration: "2 Hours",
-            group: "Open Group",
-            desc: "Taste various mountain teas and learn about local medicinal plants."
-        }
-    ];
+    const { packages } = useData();
 
     return (
         <div className="bg-background min-h-screen">
@@ -77,11 +24,11 @@ export default function Packages() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                     {packages.map((pkg, i) => (
-                        <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-border group">
+                        <div key={pkg.id || i} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-border group">
                             <div className="relative h-56 md:h-64 overflow-hidden">
-                                <img src={pkg.img} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                <img src={pkg.img || forestbath} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full font-bold text-primary shadow-sm">
-                                    {pkg.price}
+                                    {pkg.price.startsWith('₱') ? pkg.price : `₱${pkg.price}`}
                                 </div>
                             </div>
                             

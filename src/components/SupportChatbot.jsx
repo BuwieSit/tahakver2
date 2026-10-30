@@ -10,12 +10,17 @@ const KNOWLEDGE_BASE = {
   about: {
     keywords: ['what is tahak', 'about tahak', 'meaning', 'tahan', 'kalikasan', 'story'],
     response: "TAHAK (Tahanan sa Kalikasan) is a wellness-focused tour operator in Quezon, Philippines. Our name is a fusion of 'Tahanan' (home) and 'Kalikasan' (nature), representing the environment as a home for wellness. It also means 'journey' in Filipino.",
-    recommendations: ['Where is it located?', 'Our Essence', 'Who are the partners?']
+    recommendations: ['Our Essence', 'Where is it located?', 'Who are the partners?']
+  },
+  essence: {
+    keywords: ['essence', 'meaning', 'philosophy', 'vision', 'mission'],
+    response: "Our essence is rooted in helping you slow down, breathe deep, and reconnect with yourself, your culture, and your community. We believe in the environment as a sanctuary for healing and self-discovery.",
+    recommendations: ['What is TAHAK?', 'Sustainable travel', 'Our Story']
   },
   location: {
-    keywords: ['where', 'location', 'place', 'address', 'quezon', 'sta lucia'],
-    response: "We are located in the heart of Sta. Lucia, Quezon, Philippines. It's a sanctuary where the lush greenery becomes your temporary home.",
-    recommendations: ['How to get there?', 'Is transportation provided?', 'Mountain trek details']
+    keywords: ['where', 'location', 'place', 'address', 'quezon', 'sta lucia', 'get there', 'directions'],
+    response: "We are located in the heart of Sta. Lucia, Quezon, Philippines. It's a sanctuary where the lush greenery becomes your temporary home. We provide shuttle services from designated pick-up points.",
+    recommendations: ['Pick-up points', 'Is transportation provided?', 'Parking availability']
   },
   packages: {
     keywords: ['package', 'tour', 'experience', 'price', 'how much', 'rates', 'offer'],
@@ -25,7 +30,7 @@ const KNOWLEDGE_BASE = {
   ugnayan: {
     keywords: ['ugnayan', 'connection details'],
     response: "Ugnayan (The Connection) is a Day Trip priced at ₱2,500 for 2-4 persons. It includes a full day of forest bathing, guided meditation, and an organic lunch. It's perfect for those looking to reconnect with nature in a single day.",
-    recommendations: ['How to book?', 'What to bring?', 'Show all packages']
+    recommendations: ['How to book?', 'What to bring?', 'Is food included?']
   },
   sama: {
     keywords: ['sama', 'community details'],
@@ -35,22 +40,52 @@ const KNOWLEDGE_BASE = {
   kapwa: {
     keywords: ['kapwa', 'shared journey details'],
     response: "Kapwa (Shared Journey) is our premier 3 Days, 2 Nights experience for ₱7,200. It's designed for groups of 10 and involves a multi-day mountain trek with professional guides and tribal storytelling.",
-    recommendations: ['Difficulty level?', 'What to bring?', 'Show all packages']
+    recommendations: ['Difficulty level?', 'What to bring?', 'Safety protocols']
   },
   booking: {
     keywords: ['book', 'reservation', 'how to book', 'schedule', 'cancel', 'reschedule'],
-    response: "You can book directly through our 'Packages' or 'Create' pages. For cancellations or rescheduling, please contact us at least 48 hours in advance via your profile or our support team.",
+    response: "You can book directly through our 'Packages' or 'Create' pages. For cancellations or rescheduling, please contact us at least 48 hours in advance via your profile or our support team at tahak.kalikasan@gmail.com.",
     recommendations: ['Payment methods', 'Cancellation policy', 'Contact info']
+  },
+  contact: {
+    keywords: ['contact', 'email', 'support', 'help', 'message', 'reach out', 'gmail'],
+    response: "You can reach our support team via email at tahak.kalikasan@gmail.com. We're here to help you with your bookings, questions, or any feedback you may have.",
+    recommendations: ['How to book?', 'Where is it located?', 'Show all packages']
   },
   payment: {
     keywords: ['payment', 'pay', 'gcash', 'credit card', 'bank transfer', 'cost'],
-    response: "We accept GCash, bank transfers, and major credit cards via our secure booking portal.",
-    recommendations: ['Is it secure?', 'Do you accept cash?', 'Refund policy']
+    response: "We accept GCash, bank transfers, and major credit cards via our secure booking portal. Payments are processed safely through our encrypted gateway.",
+    recommendations: ['Refund policy', 'Do you accept cash?', 'Is it secure?']
   },
   trekking: {
-    keywords: ['trek', 'mountain', 'hiking', 'bring', 'clothes', 'shoes', 'difficulty'],
+    keywords: ['trek', 'mountain', 'hiking', 'bring', 'clothes', 'shoes', 'difficulty', 'trail'],
     response: "For treks, we recommend comfortable hiking boots, a reusable water bottle, sun protection, and a light rain jacket. We have trails for all skill levels, from gentle forest paths to challenging mountain treks.",
     recommendations: ['Beginner trails', 'What to bring?', 'Weather policy']
+  },
+  food: {
+    keywords: ['food', 'meal', 'lunch', 'dinner', 'breakfast', 'diet', 'vegan', 'vegetarian', 'halal', 'eat'],
+    response: "We serve organic, locally sourced meals prepared by the community. We can accommodate dietary restrictions like vegan, vegetarian, or gluten-free diets if notified in advance.",
+    recommendations: ['Ugnayan lunch', 'Farm immersion food', 'Dietary requests']
+  },
+  partners: {
+    keywords: ['partner', 'collaborate', 'community', 'local', 'who are the partners'],
+    response: "We partner with local indigenous communities, organic farmers, and certified wellness practitioners in Quezon to provide authentic and sustainable experiences.",
+    recommendations: ['Our Story', 'Community impact', 'Sustainability']
+  },
+  safety: {
+    keywords: ['safe', 'emergency', 'first aid', 'guide', 'security', 'protection'],
+    response: "Your safety is our priority. All tours are led by certified professional guides equipped with first-aid kits. We also have established emergency protocols with local health centers.",
+    recommendations: ['Weather policy', 'Difficulty level', 'Safety for kids']
+  },
+  sustainability: {
+    keywords: ['eco', 'sustainable', 'nature', 'environment', 'protect', 'green', 'preservation'],
+    response: "TAHAK is committed to 100% nature-focused, sustainable travel. We practice 'Leave No Trace' principles and a portion of our proceeds goes directly to local environmental conservation efforts.",
+    recommendations: ['Eco-rules', 'Our Essence', 'Partner communities']
+  },
+  accessibility: {
+    keywords: ['senior', 'disability', 'accessible', 'wheelchair', 'elderly', 'limited mobility'],
+    response: "We strive to make nature accessible to everyone. While mountain treks are physically demanding, we offer gentler forest walks and stationary rituals like the Sound Bath and Tea Ritual suitable for seniors.",
+    recommendations: ['Sound Bath details', 'Tea Ritual details', 'Family packages']
   },
   family: {
     keywords: ['children', 'kids', 'family', 'age', 'suitable'],
@@ -58,9 +93,9 @@ const KNOWLEDGE_BASE = {
     recommendations: ['Family packages', 'Pet policy', 'Safety for kids']
   },
   transportation: {
-    keywords: ['shuttle', 'transport', 'car', 'pick up', 'bus', 'drive'],
-    response: "Yes, we provide shuttle services from designated pick-up points for most of our packages to ensure a hassle-free journey.",
-    recommendations: ['Pick-up points', 'Parking availability', 'Driving directions']
+    keywords: ['shuttle', 'transport', 'car', 'pick up', 'bus', 'drive', 'parking'],
+    response: "Yes, we provide shuttle services from designated pick-up points for most of our packages. We also have secure parking for those who prefer to drive themselves.",
+    recommendations: ['Pick-up points', 'Driving directions', 'Parking fee']
   },
   weather: {
     keywords: ['rain', 'weather', 'storm', 'cancel weather', 'safety'],

@@ -7,7 +7,9 @@ import {
 } from "react-router-dom";
 import './styles.css';
 import { LanguageProvider } from './contexts/LanguageContext';
-import LandingPage from './pages/LoginRegister';
+import { DataProvider } from './contexts/DataContext';
+import LoginRegister from './pages/LoginRegister';
+import LandingPage from './pages/TouristPages/LandingPage';
 import Home from './pages/TouristPages/Home';
 import OurStory from './pages/TouristPages/OurStory';
 import Packages from './pages/TouristPages/Packages';
@@ -30,12 +32,13 @@ import { useLocation } from 'react-router-dom';
 const Layout = () => {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
+  const isAccessPage = location.pathname === '/access';
 
   return (
     <>
       <ScrollToTop />
       <Outlet />
-      {!isAdmin && (
+      {!isAdmin && !isAccessPage && (
         <>
           <MockGoogleAd />
           <SupportChatbot />
@@ -50,7 +53,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      {index: true, element: <Home/>},
+      {index: true, element: <LandingPage/>},
+      {path: "landing", element: <LandingPage/>},
+      {path: "home-classic", element: <Home/>},
       {path: "our-story", element: <OurStory/>},
       {path: "packages", element: <Packages/>},
       {path: "create", element: <Create/>},
@@ -59,7 +64,7 @@ const router = createBrowserRouter([
       {path: "booking", element: <Booking/>},
       {path: "privacy-policy", element: <PrivacyPolicy/>},
       {path: "profile", element: <Profile/>},
-      {path: "access", element: <LandingPage/>},
+      {path: "access", element: <LoginRegister/>},
       {
         path: "admin",
         element: <AdminLayout />,
@@ -90,9 +95,11 @@ function App() {
   if (loading) return <LoadingScreen />;
 
   return (
-    <LanguageProvider>
-        <RouterProvider router={router}/>
-    </LanguageProvider>
+    <DataProvider>
+      <LanguageProvider>
+          <RouterProvider router={router}/>
+      </LanguageProvider>
+    </DataProvider>
   );
 }
 

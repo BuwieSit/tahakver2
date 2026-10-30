@@ -3,20 +3,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
 import { Plus, Minus, Check } from "lucide-react";
+import { useData } from "../../contexts/DataContext";
 
 export default function Create() {
+    const { activities } = useData();
     const [step, setStep] = useState(1);
     const [selectedActivities, setSelectedActivities] = useState([]);
     const [guests, setGuests] = useState(1);
-
-    const activities = [
-        { id: 1, name: "Forest Bathing", price: 500, icon: "🌲" },
-        { id: 2, name: "Mountain Trekking", price: 800, icon: "⛰️" },
-        { id: 3, name: "Traditional Hilot", price: 1200, icon: "👐" },
-        { id: 4, name: "Farm-to-Table Lunch", price: 600, icon: "🥗" },
-        { id: 5, name: "Waterfalls Swim", price: 300, icon: "🌊" },
-        { id: 6, name: "Tea Ritual", price: 400, icon: "🍵" },
-    ];
 
     const toggleActivity = (id) => {
         setSelectedActivities(prev => 
@@ -84,7 +77,7 @@ export default function Create() {
                                             ${selectedActivities.includes(activity.id) 
                                                 ? "bg-primary border-primary text-white" 
                                                 : "border-border"}`}>
-                                            {selectedActivities.includes(activity.id) && <Check size={12} md:size={14}/>}
+                                            {selectedActivities.includes(activity.id) && <Check className="w-3 h-3 md:w-3.5 md:h-3.5" />}
                                         </div>
                                     </button>
                                 ))}
@@ -98,13 +91,13 @@ export default function Create() {
                                     <button 
                                         onClick={() => setGuests(Math.max(1, guests - 1))}
                                         className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-primary flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
-                                        <Minus size={20} md:size={24}/>
+                                        <Minus className="w-5 h-5 md:w-6 md:h-6" />
                                     </button>
                                     <span className="text-4xl md:text-6xl font-bold text-accent w-16 md:w-20 text-center">{guests}</span>
                                     <button 
                                         onClick={() => setGuests(guests + 1)}
                                         className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-primary flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
-                                        <Plus size={20} md:size={24}/>
+                                        <Plus className="w-5 h-5 md:w-6 md:h-6" />
                                     </button>
                                 </div>
                             </div>
