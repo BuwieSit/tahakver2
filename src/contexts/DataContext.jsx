@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
     {
       id: 1,
       title: "Ugnayan: The Connection",
-      price: "2,500",
+      price: 2500,
       img: forestbath,
       duration: "Day Trip",
       group: "2-4 persons",
@@ -23,7 +23,7 @@ export const DataProvider = ({ children }) => {
     {
       id: 2,
       title: "Sama: Community Stay",
-      price: "4,800",
+      price: 4800,
       img: farm,
       duration: "2 Days, 1 Night",
       group: "Max 6 persons",
@@ -32,7 +32,7 @@ export const DataProvider = ({ children }) => {
     {
       id: 3,
       title: "Kapwa: Shared Journey",
-      price: "7,200",
+      price: 7200,
       img: trek,
       duration: "3 Days, 2 Nights",
       group: "Group of 10",
@@ -41,7 +41,7 @@ export const DataProvider = ({ children }) => {
     {
       id: 4,
       title: "The Sound of Silence",
-      price: "1,800",
+      price: 1800,
       img: sound,
       duration: "4 Hours",
       group: "Max 12 persons",
@@ -50,7 +50,7 @@ export const DataProvider = ({ children }) => {
     {
       id: 5,
       title: "Ancestral Healing (Hilot)",
-      price: "3,200",
+      price: 3200,
       img: hilot,
       duration: "Full Day",
       group: "Private",
@@ -59,7 +59,7 @@ export const DataProvider = ({ children }) => {
     {
       id: 6,
       title: "Mountain Tea Ritual",
-      price: "1,200",
+      price: 1200,
       img: tea,
       duration: "2 Hours",
       group: "Open Group",

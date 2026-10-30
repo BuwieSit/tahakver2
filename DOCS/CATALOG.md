@@ -408,3 +408,61 @@ TypeScript type definitions for `react-dom`. Same purpose as above.
 
 ### `globals` — `^16.5.0` · dev
 Provides global variable definitions (browser, node) for ESLint configuration.
+
+---
+
+### `vitest` — `^5.0.5` · dev
+Test runner. Configured in `vite.config.js` under the `test` key. Uses jsdom environment.  
+Run with `npm test` (single pass) or `npm run test:watch` (watch mode).  
+**Do not** add Jest or any other test runner — Vitest is the standard for this project.
+
+---
+
+### `@vitest/ui` — `^5.0.5` · dev
+Browser-based test reporter UI. Run with `npm run test:ui`.
+
+---
+
+### `jsdom` — (peer, pulled by vitest) · dev
+DOM environment for Vitest. Configured via `environment: 'jsdom'` in `vite.config.js`.
+
+---
+
+### `@testing-library/react` — `^16.x` · dev
+React component and hook testing utilities. Provides `render`, `screen`, `renderHook`, `act`, `waitFor`, `fireEvent`.  
+Import from `@testing-library/react`.
+
+---
+
+### `@testing-library/user-event` — `^14.x` · dev
+Simulates real browser user interactions (typing, clicking). Use `userEvent.setup()` and `await user.click/type`.  
+Use `fireEvent` instead when tests involve `vi.useFakeTimers()`.
+
+---
+
+### `@testing-library/jest-dom` — `^6.x` · dev
+Custom DOM matchers for Vitest/Jest (`toBeInTheDocument`, `toHaveTextContent`, `toHaveAttribute`, etc.).  
+Imported globally via `src/tests/setup.js` — available in all test files without explicit import.
+
+---
+
+## Test Files — `src/tests/`
+
+All tests live in `src/tests/`. One file per subject. 159 tests total, all passing as of Oct 30, 2026.
+
+| File | Subject | Tests |
+|---|---|---|
+| `setup.js` | Global setup — asset mocks, localStorage clear | — |
+| `translations.test.js` | `translations` object — locale codes, keys, values | 14 |
+| `LanguageContext.test.jsx` | `LanguageProvider` + `useLanguage` | 7 |
+| `DataContext.test.jsx` | `DataProvider` + `useData` — defaults, localStorage, CRUD | 16 |
+| `Button.test.jsx` | `CtaButton` component | 7 |
+| `Switch.test.jsx` | `Switch` component | 8 |
+| `ContactForm.test.jsx` | `ContactForm` render + submission state machine | 7 |
+| `BookingValidation.test.js` | Booking `validate()` pure logic | 18 |
+| `AccessFormValidation.test.js` | AccessForm `validate()` pure logic | 14 |
+| `ManagePackages.test.js` | ManagePackages filter + CRUD pure logic | 20 |
+| `ManageActivities.test.js` | ManageActivities filter + CRUD pure logic | 26 |
+| `useScrollPosition.test.jsx` | `useScrollPosition` hook | 7 |
+| `useInView.test.jsx` | `useInView` hook | 8 |
+| `useUnsavedChanges.test.jsx` | `useUnsavedChanges` hook | 7 |

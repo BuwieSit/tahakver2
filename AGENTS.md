@@ -228,13 +228,70 @@ npm run preview
 
 # Run ESLint
 npm run lint
-```
 
-There is no test runner configured. Do not add test commands without first confirming the framework choice with the team.
+# Run all tests once (CI mode)
+npm test
+
+# Run tests in watch mode (development)
+npm run test:watch
+
+# Run tests with the Vitest UI (browser-based reporter)
+npm run test:ui
+```
 
 ---
 
-## 5. Documentation Rule — GOLDEN RULE
+## 5. Testing
+
+The project uses **Vitest** with **@testing-library/react** and **jsdom**.
+
+### Test location
+
+All test files live in `src/tests/`. The folder is flat — one file per subject.
+
+### Running tests
+
+```powershell
+npm test              # single run, exits with code 0 (pass) or 1 (fail)
+npm run test:watch    # re-runs on file save
+npm run test:ui       # opens browser UI at localhost
+```
+
+### Test files
+
+| File | What it covers | Tests |
+|---|---|---|
+| `translations.test.js` | All 5 locale codes, every required key, EN=UK parity, correct values | 14 |
+| `LanguageContext.test.jsx` | Default language, translation lookup, `setLanguage` switching, memoization | 7 |
+| `DataContext.test.jsx` | Default data, localStorage read/write/hydration, invalid JSON fallback, CRUD via setters, `useData` guard | 16 |
+| `Button.test.jsx` | `CtaButton` render, className merge, onClick, no-onClick safety | 7 |
+| `Switch.test.jsx` | Button labels, values, static active styling, dead `onActive` prop | 8 |
+| `ContactForm.test.jsx` | Initial render, submit → "Sending...", 1500ms timeout → success, form hidden after submit | 7 |
+| `BookingValidation.test.js` | `validate()` logic: fullName, email, phone, date — all valid/invalid cases, priority order | 18 |
+| `AccessFormValidation.test.js` | `validate()` logic: sign-in / sign-up modes, all error strings, admin credentials pass validation | 14 |
+| `ManagePackages.test.js` | Filter by title/desc/duration, price formatting, add/update/delete CRUD logic | 20 |
+| `ManageActivities.test.js` | Filter by name/category, `parseInt` price parsing, add/update/delete CRUD logic, all 5 categories | 26 |
+| `useScrollPosition.test.jsx` | Initial state, scroll event updates `scrollX`/`scrollY`, listener add/remove on mount/unmount | 7 |
+| `useInView.test.jsx` | Initial state, `isIntersecting` true/false, one-shot latch, options forwarding, no observe before ref attaches | 8 |
+| `useUnsavedChanges.test.jsx` | `beforeunload` add/remove, `preventDefault` when dirty, suppressed when `isSubmitting`, `returnValue` set | 7 |
+
+**Total: 159 tests across 13 files. All passing.**
+
+### Conventions for new tests
+
+- **Pure logic** (validation functions, filter functions, CRUD helpers): extract to a plain `.test.js` file and test without React. See `BookingValidation.test.js` and `ManagePackages.test.js`.
+- **Hooks**: use `renderHook` from `@testing-library/react`. Hooks that use `useBlocker` require a `createMemoryRouter` wrapper — see `useUnsavedChanges.test.jsx`.
+- **Components**: use `render` + `screen` queries from `@testing-library/react`. Prefer `getByRole` and `getByText` over `getByTestId`.
+- **Timers**: call `vi.useFakeTimers()` before rendering, use `fireEvent` (not `userEvent`) to submit forms when fake timers are active, advance with `act(() => { vi.advanceTimersByTime(ms); })`, always call `vi.useRealTimers()` at the end.
+- **IntersectionObserver mock**: use a real `class` (not `vi.fn()`) so `new IntersectionObserver()` works — see `useInView.test.jsx`.
+- **localStorage**: `setup.js` calls `localStorage.clear()` in `beforeEach` and `afterEach` automatically.
+- **Asset imports**: all image/font imports are mocked in `src/tests/setup.js`. Add new ones there if a new asset causes an import error.
+- **Supabase**: mock `../supaBaseClient` with `vi.mock` in any test that imports a component which calls Supabase.
+- When you add a new component, hook, or utility, add a corresponding test file and update this table.
+
+---
+
+## 6. Documentation Rule — GOLDEN RULE
 
 **Every change made to this codebase must be documented. No exceptions.**
 
@@ -297,7 +354,7 @@ Be specific: name the files created or changed, describe what they do, and note 
 
 ---
 
-## 6. Key File Index (Quick Reference)
+## 7. Key File Index (Quick Reference)
 
 | File                                  | What it does                                         |
 |---------------------------------------|------------------------------------------------------|
@@ -316,6 +373,8 @@ Be specific: name the files created or changed, describe what they do, and note 
 | `src/hooks/useInView.jsx`             | Viewport intersection observer for scroll animations |
 | `SYSDESIGN/system-design.md`         | Full system design document with architecture diagrams, data flow, and known issues |
 | `SECURITY.md`                        | Security audit report — 15 findings, remediation priority order, and fix changelog  |
+| `src/tests/setup.js`                 | Vitest global setup — asset mocks, localStorage clear |
+| `src/tests/`                         | All test files — 159 tests across 13 files |
 | `DOCS/CATALOG.md`                    | **Read first** — complete inventory of every hook, component, layout, context, and utility |
 | `DOCS/DESIGN-SYSTEM.md`              | **Read for any design change** — colors, typography, spacing, components, animations        |
 | `DOCS/`                              | Change log folder — every work session produces one numbered `.md` file here               |

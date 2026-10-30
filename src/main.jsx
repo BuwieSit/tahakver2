@@ -27,6 +27,7 @@ import ManagePackages from './pages/AdminPages/ManagePackages';
 import ManageActivities from './pages/AdminPages/ManageActivities';
 import MockGoogleAd from './components/MockGoogleAd';
 import SupportChatbot from './components/SupportChatbot';
+import ProtectedRoute from './components/ProtectedRoute';
 import { useLocation } from 'react-router-dom';
 
 const Layout = () => {
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
       {path: "access", element: <LoginRegister/>},
       {
         path: "admin",
-        element: <AdminLayout />,
+        element: <ProtectedRoute requiredRole="admin"><AdminLayout /></ProtectedRoute>,
         children: [
           { index: true, element: <AdminDashboard /> },
           { path: "packages", element: <ManagePackages /> },

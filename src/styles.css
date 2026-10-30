@@ -37,3 +37,10 @@ body {
     background-color: var(--color-surface);
     overflow-x: hidden;
 }
+
+/* SEC-04: @keyframes moved here from LoadingScreen.jsx to eliminate dangerouslySetInnerHTML */
+@keyframes loading {
+    0% { transform: translateX(-100%); width: 30%; }
+    50% { width: 60%; }
+    100% { transform: translateX(250%); width: 30%; }
+}

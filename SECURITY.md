@@ -24,21 +24,21 @@
 
 | ID | Severity | Title | File | Status |
 |---|---|---|---|---|
-| SEC-01 | 🔴 CRITICAL | Hardcoded admin credentials in client JS bundle | `src/components/AccessForm.jsx` | ⚠️ Open |
-| SEC-02 | 🔴 CRITICAL | Admin panel has zero route protection | `src/main.jsx` | ⚠️ Open |
-| SEC-03 | 🟠 HIGH | Logout does not invalidate the Supabase session | `src/layouts/AdminLayout.jsx` | ⚠️ Open |
-| SEC-04 | 🟠 HIGH | `dangerouslySetInnerHTML` used to inject a style block | `src/components/LoadingScreen.jsx` | ⚠️ Open |
-| SEC-05 | 🟠 HIGH | 15 npm dependency vulnerabilities (11 high) | `package.json` | ⚠️ Open |
-| SEC-06 | 🟠 HIGH | All data mutations are localStorage-only; data is fully client-controlled | `src/contexts/DataContext.jsx` | ⚠️ Open |
-| SEC-07 | 🟡 MEDIUM | No server-side input validation on any form | `AccessForm.jsx`, `Booking.jsx` | ⚠️ Open |
-| SEC-08 | 🟡 MEDIUM | Supabase anon key is public; RLS status unverified | `src/supaBaseClient.js` | ⚠️ Open |
-| SEC-09 | 🟡 MEDIUM | Booking and contact forms silently discard all submissions | `Booking.jsx`, `ContactForm.jsx` | ⚠️ Open |
-| SEC-10 | 🟡 MEDIUM | Price stored as locale-formatted string, not a number | `DataContext.jsx`, `ManagePackages.jsx` | ⚠️ Open |
-| SEC-11 | 🟡 MEDIUM | Weak email validation (`includes("@")` only) | `src/components/AccessForm.jsx` | ⚠️ Open |
-| SEC-12 | 🔵 LOW | No HTTP security headers (CSP, X-Frame-Options, etc.) | `vercel.json` | ⚠️ Open |
-| SEC-13 | 🔵 LOW | Supabase auth error messages exposed verbatim (user enumeration) | `src/components/AccessForm.jsx` | ⚠️ Open |
-| SEC-14 | 🔵 LOW | No session check on admin layout mount | `src/layouts/AdminLayout.jsx` | ⚠️ Open |
-| SEC-15 | 🔵 LOW | `package.json` project name is `"react"` (namespace confusion risk) | `package.json` | ⚠️ Open |
+| SEC-01 | 🔴 CRITICAL | Hardcoded admin credentials in client JS bundle | `src/components/AccessForm.jsx` | ✅ Resolved |
+| SEC-02 | 🔴 CRITICAL | Admin panel has zero route protection | `src/main.jsx` | ✅ Resolved |
+| SEC-03 | 🟠 HIGH | Logout does not invalidate the Supabase session | `src/layouts/AdminLayout.jsx` | ✅ Resolved |
+| SEC-04 | 🟠 HIGH | `dangerouslySetInnerHTML` used to inject a style block | `src/components/LoadingScreen.jsx` | ✅ Resolved |
+| SEC-05 | 🟠 HIGH | 15 npm dependency vulnerabilities (11 high) | `package.json` | ✅ Resolved |
+| SEC-06 | 🟠 HIGH | All data mutations are localStorage-only; data is fully client-controlled | `src/contexts/DataContext.jsx` | 🔄 Pending Supabase |
+| SEC-07 | 🟡 MEDIUM | No server-side input validation on any form | `AccessForm.jsx`, `Booking.jsx` | 🔄 Pending Supabase |
+| SEC-08 | 🟡 MEDIUM | Supabase anon key is public; RLS status unverified | `src/supaBaseClient.js` | 🔄 Pending Supabase |
+| SEC-09 | 🟡 MEDIUM | Booking and contact forms silently discard all submissions | `Booking.jsx`, `ContactForm.jsx` | 🔄 Pending Supabase |
+| SEC-10 | 🟡 MEDIUM | Price stored as locale-formatted string, not a number | `DataContext.jsx`, `ManagePackages.jsx` | ✅ Resolved |
+| SEC-11 | 🟡 MEDIUM | Weak email validation (`includes("@")` only) | `src/components/AccessForm.jsx` | ✅ Resolved |
+| SEC-12 | 🔵 LOW | No HTTP security headers (CSP, X-Frame-Options, etc.) | `vercel.json` | ✅ Resolved |
+| SEC-13 | 🔵 LOW | Supabase auth error messages exposed verbatim (user enumeration) | `src/components/AccessForm.jsx` | ✅ Resolved |
+| SEC-14 | 🔵 LOW | No session check on admin layout mount | `src/layouts/AdminLayout.jsx` | ✅ Resolved |
+| SEC-15 | 🔵 LOW | `package.json` project name is `"react"` (namespace confusion risk) | `package.json` | ✅ Resolved |
 
 ---
 
@@ -49,7 +49,8 @@
 ### SEC-01 — 🔴 CRITICAL: Hardcoded Admin Credentials in Client JS Bundle
 
 **File:** `src/components/AccessForm.jsx`, lines 36–39  
-**Status:** ⚠️ Open
+**Status:** ✅ Resolved — Oct 30, 2026  
+**Fix applied:** Removed the hardcoded `admin@tahak.com` / `admin123` bypass block entirely from `handleSubmit`. Admin access now requires a real Supabase session with `user_metadata.role === 'admin'`, enforced by `ProtectedRoute` (SEC-02 fix). The `ProtectedRoute` component reads the session from Supabase after login — there is no client-side shortcut remaining.
 
 **What it is:**  
 The admin email and password are hardcoded as plaintext strings directly inside a React component:
@@ -80,7 +81,8 @@ This bypass also completely skips Supabase auth, meaning no rate limiting, no au
 ### SEC-02 — 🔴 CRITICAL: Admin Panel Has Zero Route Protection
 
 **File:** `src/main.jsx`, lines 57–67  
-**Status:** ⚠️ Open
+**Status:** ✅ Resolved — Oct 30, 2026  
+**Fix applied:** Created `src/components/ProtectedRoute.jsx`. It calls `supabase.auth.getSession()` on mount, checks that a session exists and that `user.user_metadata.role === 'admin'`, and redirects to `/access` for any unauthorised visitor. All `/admin/*` routes in `main.jsx` are now wrapped: `element: <ProtectedRoute requiredRole="admin"><AdminLayout /></ProtectedRoute>`.
 
 **What it is:**  
 Every admin route is rendered unconditionally. There is no `ProtectedRoute`, no `RequireAuth` wrapper, no `supabase.auth.getSession()` call, and no role check anywhere in the router or layout:

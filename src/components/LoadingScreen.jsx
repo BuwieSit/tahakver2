@@ -29,14 +29,6 @@ export default function LoadingScreen() {
                     Finding your way home
                 </p>
             </div>
-
-            <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes loading {
-                    0% { transform: translateX(-100%); width: 30%; }
-                    50% { width: 60%; }
-                    100% { transform: translateX(250%); width: 30%; }
-                }
-            `}} />
         </div>
     );
 }

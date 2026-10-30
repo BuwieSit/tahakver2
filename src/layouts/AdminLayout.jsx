@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
+import { supabase } from '../supaBaseClient';
 import { 
   LayoutDashboard, 
   Package, 
@@ -33,6 +34,16 @@ const AdminLayout = () => {
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
+  // SEC-14: Redirect immediately if the session expires while on an admin page
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT' || !session) {
+        navigate('/access', { replace: true });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
   // Close notifications when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -57,8 +68,10 @@ const AdminLayout = () => {
     { icon: <Settings size={20} />, label: 'Settings', path: '/admin/settings' },
   ];
 
-  const handleLogout = () => {
-    navigate('/access');
+  // SEC-03: Properly invalidate the Supabase session on logout
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/access', { replace: true });
   };
 
   return (

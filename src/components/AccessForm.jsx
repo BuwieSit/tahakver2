@@ -18,7 +18,8 @@ export default function AccessForm() {
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 // ... rest of component
     const validate = () => {
-        if (!formData.email.includes("@")) return "Invalid email address.";
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailRegex.test(formData.email)) return "Invalid email address.";
         if (formData.password.length < 6) return "Password must be at least 6 characters.";
         if (isSignUp && formData.password !== formData.confirmPassword) return "Passwords do not match.";
         return "";
@@ -32,19 +33,18 @@ export default function AccessForm() {
         setLoading(true);
         setError("");
 
-        // Check for hardcoded admin account
-        if (!isSignUp && formData.email === "admin@tahak.com" && formData.password === "admin123") {
-            setLoading(false);
-            navigate('/admin');
-            return;
-        }
-
         const { error: authError } = isSignUp 
             ? await supabase.auth.signUp({ email: formData.email, password: formData.password, options: { data: { full_name: formData.fullName } } })
             : await supabase.auth.signInWithPassword({ email: formData.email, password: formData.password });
 
-        if (authError) setError(authError.message);
-        else navigate('/');
+        if (authError) {
+            setError(isSignUp
+                ? "Sign-up failed. Please try again or use a different email."
+                : "Login failed. Please check your credentials and try again."
+            );
+        } else {
+            navigate('/');
+        }
         setLoading(false);
     };
 

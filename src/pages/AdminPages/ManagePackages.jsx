@@ -34,7 +34,7 @@ const ManagePackages = () => {
       setEditingPackage(pkg);
       setFormData({
         title: pkg.title,
-        price: pkg.price.replace(/,/g, ''),
+        price: pkg.price,
         duration: pkg.duration,
         group: pkg.group,
         desc: pkg.desc
@@ -75,23 +75,21 @@ const ManagePackages = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Format price for display
-    const formattedPrice = Number(formData.price).toLocaleString();
+    // SEC-10: Store price as a plain number, format only at render time
+    const numericPrice = Number(formData.price) || 0;
     const action = editingPackage ? "updated" : "added";
     
     if (editingPackage) {
-      // Update
       setPackages(prev => prev.map(p => 
         p.id === editingPackage.id 
-          ? { ...formData, id: p.id, price: formattedPrice } 
+          ? { ...formData, id: p.id, price: numericPrice } 
           : p
       ));
     } else {
-      // Add
       const newPackage = {
         ...formData,
         id: Date.now(),
-        price: formattedPrice
+        price: numericPrice
       };
       setPackages(prev => [...prev, newPackage]);
     }
@@ -182,7 +180,7 @@ const ManagePackages = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-emerald-500 font-bold">₱{pkg.price}</td>
+                  <td className="px-6 py-4 text-emerald-500 font-bold">₱{Number(pkg.price).toLocaleString()}</td>
                   <td className="px-6 py-4 text-gray-400">{pkg.duration}</td>
                   <td className="px-6 py-4 text-gray-400">{pkg.group}</td>
                   <td className="px-6 py-4">

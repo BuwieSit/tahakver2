@@ -28,7 +28,7 @@ export default function Packages() {
                             <div className="relative h-56 md:h-64 overflow-hidden">
                                 <img src={pkg.img || forestbath} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full font-bold text-primary shadow-sm">
-                                    {pkg.price.startsWith('₱') ? pkg.price : `₱${pkg.price}`}
+                                    ₱{Number(pkg.price).toLocaleString()}
                                 </div>
                             </div>
                             
