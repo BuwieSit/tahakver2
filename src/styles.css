@@ -44,3 +44,20 @@ body {
     50% { width: 60%; }
     100% { transform: translateX(250%); width: 30%; }
 }
+
+/* LoadingScreen: falling leaf animation */
+@keyframes leaf-fall {
+    0%   { transform: translateY(-60px) rotate(0deg) translateX(0px); opacity: 1; }
+    25%  { transform: translateY(25vh) rotate(90deg) translateX(30px); }
+    50%  { transform: translateY(50vh) rotate(180deg) translateX(-20px); }
+    75%  { transform: translateY(75vh) rotate(270deg) translateX(25px); }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(-10px); opacity: 0; }
+}
+
+/* LoadingScreen: idle phrase fade-in/out */
+@keyframes phrase-fade {
+    0%   { opacity: 0; transform: translateY(6px); }
+    15%  { opacity: 1; transform: translateY(0); }
+    75%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-6px); }
+}

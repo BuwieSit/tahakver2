@@ -8,6 +8,10 @@ import useInView from "../../hooks/useInView";
 // Assets
 import rocks from "../../assets/rocks.webp";
 import sta_lucia from "../../assets/sta_lucia.jpg";
+import tahak_team from "../../assets/tahak_team.png";
+import mt_cristobal from "../../assets/mt_cristobal.webp";
+import rocks_shore from "../../assets/rocks.webp";
+
 
 // Icons
 import {
@@ -124,11 +128,7 @@ export default function OurStory() {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-accent/60 to-accent/90 z-10" />
 
                 <div className="relative z-20 text-center text-white px-6 md:px-12 max-w-5xl mx-auto pt-24 pb-16 flex flex-col items-center">
-                    {/* Eyebrow Badge */}
-                    <div className="inline-flex items-center gap-2.5 bg-white/15 backdrop-blur-md border border-white/25 px-5 py-2 rounded-full mb-6 text-xs md:text-sm font-semibold tracking-wide shadow-lg animate__animated animate__fadeInDown">
-                        <Award className="w-4 h-4 text-emerald-300 shrink-0" />
-                        <span className="text-white/95">Our Heritage, Calling & Philosophy</span>
-                    </div>
+
 
                     {/* Headline */}
                     <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-primary-title font-normal leading-tight mb-8 drop-shadow-2xl animate__animated animate__fadeIn">
@@ -137,30 +137,35 @@ export default function OurStory() {
                     </h1>
 
                     {/* Evocative Ethos Quote */}
-                    <div className="relative max-w-3xl mx-auto my-4 p-6 sm:p-8 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl animate__animated animate__fadeInUp">
+                    <div className="relative max-w-3xl mx-auto my-4 p-6 sm:p-8 rounded-3xl  backdrop-blur-md shadow-xl animate__animated animate__fadeInUp">
                         <Quote className="w-8 h-8 text-emerald-300/40 absolute top-4 left-4 -scale-x-100" />
-                        <p className="text-base sm:text-lg md:text-2xl font-primary-title italic text-white/95 leading-relaxed z-10 relative">
+                        <p className="text-base sm:text-sm md:text-xl font-primary-title italic text-white/95 leading-relaxed z-10 relative">
                             "TahaK was born to help you slow down, breathe deep, and reconnect with what truly matters—yourself, your culture, your community."
                         </p>
                     </div>
-
-                    {/* Trust Signals */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-10 mt-10 pt-8 border-t border-white/20 w-full max-w-3xl text-left sm:text-center text-xs md:text-sm text-white/85">
-                        <div className="flex items-center justify-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
-                            <span>1st Wellness Operator in Quezon</span>
-                        </div>
-                        <div className="flex items-center justify-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
-                            <span>Regenerative Community Tourism</span>
-                        </div>
-                        <div className="flex items-center justify-center gap-2 col-span-2 sm:col-span-1">
-                            <MapPin className="w-4 h-4 text-emerald-300 shrink-0" />
-                            <span>Sta. Lucia & Dolores Foothills</span>
-                        </div>
-                    </div>
                 </div>
+                
             </section>
+
+            {/* Trust Signals */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 w-full font-primary-text">
+
+                <div className="relative overflow-hidden h-48 md:h-64 group">
+                    <img src={tahak_team} alt="tahak team" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                    <div className="absolute inset-0 bg-black/45" />
+                    <span className="absolute inset-0 flex items-center justify-center text-white md:text-2xl font-semibold text-center px-4 leading-snug drop-shadow-lg ">1st Wellness Operator in Quezon</span>
+                </div>
+                <div className="relative overflow-hidden h-48 md:h-64 group">
+                    <img src={mt_cristobal} alt="Mt. Cristobal" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                    <div className="absolute inset-0 bg-black/45" />
+                    <span className="absolute inset-0 flex items-center justify-center text-white md:text-2xl font-semibold text-center px-4 leading-snug drop-shadow-lg">Regenerative Community Tourism</span>
+                </div>
+                <div className="relative overflow-hidden h-48 md:h-64 group col-span-2 sm:col-span-1">
+                    <img src={rocks_shore} alt="Rocks Shore" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                    <div className="absolute inset-0 bg-black/45" />
+                    <span className="absolute inset-0 flex items-center justify-center text-white md:text-2xl font-semibold text-center px-4 leading-snug drop-shadow-lg">Dolores, Quezon Foothills</span>
+                </div>
+            </div>
 
             {/* 2. THE ESSENCE & ORIGIN STORY (WITH VIDEO & ETYMOLOGY) */}
             <section
@@ -189,17 +194,17 @@ export default function OurStory() {
                     {namePillars.map((pillar, idx) => (
                         <div
                             key={idx}
-                            className={`bg-white rounded-3xl p-8 border border-border shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between ${
+                            className={`bg-white rounded-3xl p-8 border border-border shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between  ${
                                 isEssenceInView ? "animate__animated animate__fadeInUp" : "opacity-0"
                             }`}
                             style={{ animationDelay: `${idx * 150}ms` }}
                         >
                             <div>
                                 <div className="flex items-center justify-between mb-6">
-                                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center">
                                         {pillar.icon}
                                     </div>
-                                    <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full bg-emerald-50 text-primary border border-primary/20">
+                                    <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full">
                                         {pillar.badge}
                                     </span>
                                 </div>
@@ -301,7 +306,7 @@ export default function OurStory() {
                             </span>
                             <h2 className="text-3xl sm:text-4xl md:text-5xl font-primary-title text-accent leading-tight mb-6">
                                 The Foothills of Banahaw: <br />
-                                <span className="italic font-normal">Sta. Lucia & Dolores, Quezon</span>
+                                <span className="italic font-normal">Dolores, Quezon</span>
                             </h2>
                             <p className="text-sm md:text-base text-primary-text-color/80 mb-8 leading-relaxed">
                                 Our home rests at the serene foothills of Mount Banahaw—a mountain revered for generations as a mystical spiritual sanctuary. Here, subterranean spring waters flow pure, volcanic mineral rocks radiate calm, and thick tree canopies generate rich phytoncides that naturally lower cortisol levels.
@@ -354,7 +359,7 @@ export default function OurStory() {
                                         Protected Eco-Sanctuary
                                     </span>
                                     <h3 className="text-xl md:text-2xl font-primary-title">
-                                        Sta. Lucia Natural Groves
+                                        Dolores, Quezon Natural Groves
                                     </h3>
                                     <p className="text-xs md:text-sm text-white/80 mt-1">
                                         Where pristine mountain water and living earth meet.
@@ -527,7 +532,21 @@ export default function OurStory() {
                 </div>
             </section>
 
-            {/* 7. CONTACT & INQUIRY FORM */}
+            {/* 7. MEET OUR TEAM — Subtle Link */}
+            <section className="py-10 px-6 md:px-12 max-w-7xl mx-auto text-center">
+                <Link
+                    to="/our-team"
+                    className="inline-flex items-center gap-2 text-sm text-primary-text-color/50 hover:text-primary transition-colors duration-200 group"
+                >
+                    <Users className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-200" />
+                    <span className="underline underline-offset-4 decoration-dotted">
+                        More info about our team
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+                </Link>
+            </section>
+
+            {/* 8. CONTACT & INQUIRY FORM */}
             <ContactForm />
 
             {/* 8. FOOTER */}

@@ -1,69 +1,39 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import farm from "../assets/pictures/farm.jpg";
-import forestbath from "../assets/pictures/forestbath.jpg";
-import trek from "../assets/pictures/trek.jpg";
-import tea from "../assets/pictures/tea.jpg";
-import sound from "../assets/pictures/sound.jpg";
-import hilot from "../assets/pictures/hilot.png";
+import kapwa1 from "../assets/TOUR_PACKAGES/kapwa1.png";
+import ugnayan1 from "../assets/TOUR_PACKAGES/ugnayan1.png";
+import samasama1 from "../assets/TOUR_PACKAGES/samasama1.png";
 
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  // Initial default data
+  // Official tour packages from TOUR_PACKAGES.md
   const defaultPackages = [
     {
       id: 1,
-      title: "Ugnayan: The Connection",
-      price: 2500,
-      img: forestbath,
-      duration: "Day Trip",
-      group: "2-4 persons",
-      desc: "A full day of forest bathing, guided meditation, and organic lunch."
+      title: "Kapwa Package (3D2N)",
+      price: 7200,
+      img: kapwa1,
+      duration: "3 Days, 2 Nights",
+      group: "Min 2-10 persons",
+      desc: "Our signature multi-day retreat: Mt. Banahaw guided trek with folklore storytelling and Pamumuwesto, Sta. Lucia Falls water cleansing, Banahaw Circle Nature Retreat stay, FarmKO organic farm immersion, Tuob with Hilot, Kawa bath, and Tacsyapo reflection."
     },
     {
       id: 2,
-      title: "Sama: Community Stay",
+      title: "Ugnayan Package (2D1N)",
       price: 4800,
-      img: farm,
+      img: ugnayan1,
       duration: "2 Days, 1 Night",
-      group: "Max 6 persons",
-      desc: "Immerse in local farm life, learn traditional crafts, and sleep under the stars."
+      group: "Min 2-8 persons",
+      desc: "A restorative 2D1N healing sanctuary stay at Banahaw Circle Nature Retreat with Arnis stick yoga, forest bathing, Sta. Lucia Falls meditation, Tuob with coconut charcoal and Hilot, campfire story circle, and organic farm tour."
     },
     {
       id: 3,
-      title: "Kapwa: Shared Journey",
-      price: 7200,
-      img: trek,
-      duration: "3 Days, 2 Nights",
-      group: "Group of 10",
-      desc: "Multi-day mountain trek with professional guides and tribal storytelling."
-    },
-    {
-      id: 4,
-      title: "The Sound of Silence",
-      price: 1800,
-      img: sound,
-      duration: "4 Hours",
-      group: "Max 12 persons",
-      desc: "A therapeutic sound bath session in the middle of a pine forest."
-    },
-    {
-      id: 5,
-      title: "Ancestral Healing (Hilot)",
-      price: 3200,
-      img: hilot,
-      duration: "Full Day",
-      group: "Private",
-      desc: "Traditional Hilot massage and herbal bath experience at the falls."
-    },
-    {
-      id: 6,
-      title: "Mountain Tea Ritual",
-      price: 1200,
-      img: tea,
-      duration: "2 Hours",
-      group: "Open Group",
-      desc: "Taste various mountain teas and learn about local medicinal plants."
+      title: "Sama-Sama Package (Day Tour)",
+      price: 2500,
+      img: samasama1,
+      duration: "Day Tour",
+      group: "Min 2-10 persons",
+      desc: "A transformative full-day immersion: Mt. Banahaw guided trek with folklore storytelling, Arnis stick yoga, forest bathing, organic lunch, Kawa bath, Tuob with coconut charcoal and traditional Hilot session, and Tacsyapo reflection."
     }
   ];
 
@@ -81,7 +51,13 @@ export const DataProvider = ({ children }) => {
     const saved = localStorage.getItem('tahak_packages');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        // Cleanse legacy placeholder packages if present (e.g. old 6-package list)
+        if (Array.isArray(parsed) && parsed.some(p => p.id === 4 || p.id === 5 || p.id === 6)) {
+          localStorage.setItem('tahak_packages', JSON.stringify(defaultPackages));
+          return defaultPackages;
+        }
+        return parsed;
       } catch (e) {
         console.error("Failed to parse packages from localStorage", e);
         return defaultPackages;
@@ -103,17 +79,30 @@ export const DataProvider = ({ children }) => {
     return defaultActivities;
   });
 
-  // Sync with localStorage whenever state changes
+  // Sync to localStorage
   useEffect(() => {
-    localStorage.setItem('tahak_packages', JSON.stringify(packages));
+    try {
+      localStorage.setItem('tahak_packages', JSON.stringify(packages));
+    } catch (e) {
+      console.error("Failed to save packages to localStorage", e);
+    }
   }, [packages]);
 
   useEffect(() => {
-    localStorage.setItem('tahak_activities', JSON.stringify(activities));
+    try {
+      localStorage.setItem('tahak_activities', JSON.stringify(activities));
+    } catch (e) {
+      console.error("Failed to save activities to localStorage", e);
+    }
   }, [activities]);
 
   return (
-    <DataContext.Provider value={{ packages, setPackages, activities, setActivities }}>
+    <DataContext.Provider value={{
+      packages,
+      setPackages,
+      activities,
+      setActivities
+    }}>
       {children}
     </DataContext.Provider>
   );

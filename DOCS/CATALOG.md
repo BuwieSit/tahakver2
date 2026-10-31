@@ -1,6 +1,6 @@
 # TAHAK — Component, Hook & Utility Catalog
 
-**Last updated:** Oct 30, 2026  
+**Last updated:** Oct 31, 2026  
 This is the single source of truth for everything that already exists in `src/`.  
 Before writing any new hook, component, context, utility, or layout — search this file first.  
 If what you need is here, use it. If it is not here, create it and then add it to this catalog.
@@ -104,7 +104,7 @@ If what you need is here, use it. If it is not here, create it and then add it t
 **File:** `src/components/LoadingScreen.jsx`  
 **Export:** default  
 **Props:** none  
-**What it does:** Full-screen branded splash (`fixed inset-0 z-[9999]`). Shows the TAHAK logo with concentric pulse rings, an animated progress bar, and the tagline "Finding your way home". Rendered by `App` in `main.jsx` for the first 2 seconds after mount. Not intended to be used outside of that bootstrap context.
+**What it does:** Full-screen branded splash (`fixed inset-0 z-[9999]`). Shows the TAHAK logo with concentric pulse rings, an animated progress bar, and a field of 14 randomised falling leaf SVGs (via `leaf-fall` keyframe in `styles.css`). After **2 seconds** of mount time, an idle phrase fades in below the progress bar and cycles every 3 seconds through 6 nature-themed phrases ("Blending herbal tea...", "Planting trees...", "Listening to the forest...", "Breathing in mountain air...", "Warming up the kawa bath...", "Preparing your nature retreat..."). Rendered by `App` in `main.jsx` for the initial bootstrap period. Not intended to be used outside of that bootstrap context.
 
 ---
 
@@ -252,9 +252,10 @@ Pages are not reusable components but are listed here so agents know what alread
 | `LandingPage.jsx` | `/`, `/landing` | `Header`, `Footer`, `ContactForm`, `useInView` |
 | `Home.jsx` | `/home-classic` | `Header`, `Footer`, `ContactForm`, `useInView` |
 | `OurStory.jsx` | `/our-story` | `Header`, `Footer`, `ContactForm`, `useInView` |
-| `Packages.jsx` | `/packages` | `Header`, `Footer`, `ContactForm`, `useData` |
+| `Packages.jsx` | `/packages` | `Header`, `Footer`, `ContactForm`, `useData`, Quick View Modal, Search/Filter Hub |
 | `Create.jsx` | `/create` | `Header`, `Footer`, `useData` |
 | `Partners.jsx` | `/partners` | `Header`, `Footer` |
+| `OurTeam.jsx` | `/our-team` | `Header`, `Footer`, `useInView` |
 | `FAQs.jsx` | `/faqs` | `Header`, `Footer` |
 | `Booking.jsx` | `/booking` | `Header`, `Footer`, `ContactForm`, `useUnsavedChanges` |
 | `PrivacyPolicy.jsx` | `/privacy-policy` | `Header`, `Footer` |
@@ -448,7 +449,7 @@ Imported globally via `src/tests/setup.js` — available in all test files witho
 
 ## Test Files — `src/tests/`
 
-All tests live in `src/tests/`. One file per subject. 159 tests total, all passing as of Oct 30, 2026.
+All tests live in `src/tests/`. One file per subject. 180 tests total, all passing as of Oct 31, 2026.
 
 | File | Subject | Tests |
 |---|---|---|
@@ -456,6 +457,7 @@ All tests live in `src/tests/`. One file per subject. 159 tests total, all passi
 | `translations.test.js` | `translations` object — locale codes, keys, values | 14 |
 | `LanguageContext.test.jsx` | `LanguageProvider` + `useLanguage` | 7 |
 | `DataContext.test.jsx` | `DataProvider` + `useData` — defaults, localStorage, CRUD | 16 |
+| `Packages.test.jsx` | `Packages` page render, categories, inclusions, quick view modal, booking flow | 21 |
 | `Button.test.jsx` | `CtaButton` component | 7 |
 | `Switch.test.jsx` | `Switch` component | 8 |
 | `ContactForm.test.jsx` | `ContactForm` render + submission state machine | 7 |

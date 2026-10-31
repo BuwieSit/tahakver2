@@ -19,6 +19,7 @@ import FAQs from './pages/TouristPages/FAQs';
 import Booking from './pages/TouristPages/Booking';
 import PrivacyPolicy from './pages/TouristPages/PrivacyPolicy';
 import Profile from './pages/TouristPages/Profile';
+import OurTeam from './pages/TouristPages/OurTeam';
 import LoadingScreen from './components/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop';
 import AdminDashboard from './pages/AdminPages/Dashboard';
@@ -65,6 +66,7 @@ const router = createBrowserRouter([
       {path: "booking", element: <Booking/>},
       {path: "privacy-policy", element: <PrivacyPolicy/>},
       {path: "profile", element: <Profile/>},
+      {path: "our-team", element: <OurTeam/>},
       {path: "access", element: <LoginRegister/>},
       {
         path: "admin",

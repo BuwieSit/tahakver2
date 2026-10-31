@@ -19,7 +19,7 @@ const KNOWLEDGE_BASE = {
   },
   location: {
     keywords: ['where', 'location', 'place', 'address', 'quezon', 'sta lucia', 'get there', 'directions'],
-    response: "We are located in the heart of Sta. Lucia, Quezon, Philippines. It's a sanctuary where the lush greenery becomes your temporary home. We provide shuttle services from designated pick-up points.",
+    response: "We are located in Dolores, Quezon, Philippines — at the serene foothills of Mount Banahaw. It's a sanctuary where the lush greenery becomes your temporary home. We provide shuttle services from designated pick-up points.",
     recommendations: ['Pick-up points', 'Is transportation provided?', 'Parking availability']
   },
   packages: {

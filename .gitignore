@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 .env
+
+AGENTS.md
+TAHAK_TEAM.md
+TOUR_PACKAGES.md
+
+DOCS/
+SYSDESIGN/

@@ -33,9 +33,9 @@ function BadConsumer() {
 
 describe('DataContext', () => {
   describe('defaults', () => {
-    it('provides 6 default packages when localStorage is empty', () => {
+    it('provides 3 default packages when localStorage is empty', () => {
       render(<DataProvider><DataConsumer /></DataProvider>);
-      expect(screen.getByTestId('pkg-count')).toHaveTextContent('6');
+      expect(screen.getByTestId('pkg-count')).toHaveTextContent('3');
     });
 
     it('provides 6 default activities when localStorage is empty', () => {
@@ -43,9 +43,9 @@ describe('DataContext', () => {
       expect(screen.getByTestId('act-count')).toHaveTextContent('6');
     });
 
-    it('first default package title is "Ugnayan: The Connection"', () => {
+    it('first default package title is "Kapwa Package (3D2N)"', () => {
       render(<DataProvider><DataConsumer /></DataProvider>);
-      expect(screen.getByTestId('first-pkg-title')).toHaveTextContent('Ugnayan: The Connection');
+      expect(screen.getByTestId('first-pkg-title')).toHaveTextContent('Kapwa Package (3D2N)');
     });
 
     it('first default activity name is "Forest Bathing"', () => {
@@ -64,7 +64,7 @@ describe('DataContext', () => {
     it('writes packages to localStorage on mount', () => {
       render(<DataProvider><DataConsumer /></DataProvider>);
       const stored = JSON.parse(localStorage.getItem('tahak_packages'));
-      expect(stored).toHaveLength(6);
+      expect(stored).toHaveLength(3);
     });
 
     it('writes activities to localStorage on mount', () => {
@@ -78,7 +78,7 @@ describe('DataContext', () => {
       render(<DataProvider><DataConsumer /></DataProvider>);
       await user.click(screen.getByText('Add Package'));
       const stored = JSON.parse(localStorage.getItem('tahak_packages'));
-      expect(stored).toHaveLength(7);
+      expect(stored).toHaveLength(4);
       expect(stored.at(-1).title).toBe('Test Pkg');
     });
 
@@ -113,7 +113,7 @@ describe('DataContext', () => {
       localStorage.setItem('tahak_activities', 'NOT_VALID_JSON{{');
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       render(<DataProvider><DataConsumer /></DataProvider>);
-      expect(screen.getByTestId('pkg-count')).toHaveTextContent('6');
+      expect(screen.getByTestId('pkg-count')).toHaveTextContent('3');
       expect(screen.getByTestId('act-count')).toHaveTextContent('6');
       consoleSpy.mockRestore();
     });
@@ -138,7 +138,7 @@ describe('DataContext', () => {
       const user = userEvent.setup();
       render(<DataProvider><DataConsumer /></DataProvider>);
       await user.click(screen.getByText('Add Package'));
-      expect(screen.getByTestId('pkg-count')).toHaveTextContent('7');
+      expect(screen.getByTestId('pkg-count')).toHaveTextContent('4');
     });
   });
 

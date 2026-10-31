@@ -4,10 +4,17 @@ This file is the canonical reference for any agent or developer working in this 
 Read it fully before writing new code, adding files, or installing packages.
 Its purpose is to prevent duplicate utilities, redundant components, and inconsistent patterns.
 
-> **Before you start any task — read these two files first:**
+> **Before you start any task — read these files first:**
 >
 > - **[`DOCS/CATALOG.md`](./DOCS/CATALOG.md)** — every hook, component, layout, context, utility, and page that already exists, with exact signatures and usage rules. If what you need is there, use it. Do not recreate it.
 > - **[`DOCS/DESIGN-SYSTEM.md`](./DOCS/DESIGN-SYSTEM.md)** — all visual rules: colors, typography, spacing, border radii, shadows, buttons, cards, animations, and responsive patterns. Any design change must follow this document.
+>
+> **And read these domain reference files when the task involves their subject:**
+>
+> - **[`TOUR_PACKAGES.md`](./TOUR_PACKAGES.md)** — the canonical itineraries, activities, and structure for all three tour packages (Kapwa, Ugnayan, Sama-Sama). Read this before touching any tour package content, descriptions, activities list, or booking-related copy.
+> - **[`TAHAK_TEAM.md`](./TAHAK_TEAM.md)** — full team profiles, academic disciplines, roles, mentor information, and the project's social mission. Read this before editing any "Our Team", "About Us", or mission-related content.
+> - **[`SYSDESIGN/system-design.md`](./SYSDESIGN/system-design.md)** — full system architecture, data flow diagrams, component relationships, auth design, and known issues. Read this before making architectural decisions or changes.
+> - **[`SECURITY.md`](./SECURITY.md)** — security audit report with 15 findings, their severity, remediation priorities, and the fix changelog. Read this before changing auth flows, access control, or any sensitive data handling.
 ---
 
 ## 1. Project Overview
@@ -271,11 +278,12 @@ npm run test:ui       # opens browser UI at localhost
 | `AccessFormValidation.test.js` | `validate()` logic: sign-in / sign-up modes, all error strings, admin credentials pass validation | 14 |
 | `ManagePackages.test.js` | Filter by title/desc/duration, price formatting, add/update/delete CRUD logic | 20 |
 | `ManageActivities.test.js` | Filter by name/category, `parseInt` price parsing, add/update/delete CRUD logic, all 5 categories | 26 |
+| `Packages.test.jsx` | `Packages` page render, categories, inclusions, quick view modal, booking flow | 21 |
 | `useScrollPosition.test.jsx` | Initial state, scroll event updates `scrollX`/`scrollY`, listener add/remove on mount/unmount | 7 |
 | `useInView.test.jsx` | Initial state, `isIntersecting` true/false, one-shot latch, options forwarding, no observe before ref attaches | 8 |
 | `useUnsavedChanges.test.jsx` | `beforeunload` add/remove, `preventDefault` when dirty, suppressed when `isSubmitting`, `returnValue` set | 7 |
 
-**Total: 159 tests across 13 files. All passing.**
+**Total: 180 tests across 14 files. All passing.**
 
 ### Conventions for new tests
 
@@ -354,7 +362,73 @@ Be specific: name the files created or changed, describe what they do, and note 
 
 ---
 
-## 7. Key File Index (Quick Reference)
+## 8. Domain Reference Files
+
+These files contain the authoritative business, content, and operational data for TAHAK.
+They are **not** implementation docs — they are source-of-truth references that any code or copy change must align with.
+Read the relevant file before touching its subject area. Do not contradict or deviate from the information in them without explicit instruction from the project owner.
+
+### Tour Packages — [`TOUR_PACKAGES.md`](./TOUR_PACKAGES.md)
+
+Contains the full, canonical itineraries for all three tour packages:
+
+| Package | Duration | Tagline theme |
+|---------|----------|---------------|
+| **Kapwa** | 3 Days 2 Nights | Filipino connection, community, and nature healing |
+| **Ugnayan** | 2 Days 1 Night | Bonding and restoration |
+| **Sama-Sama** | Day Tour | A taste of the full TahaK experience |
+
+Each package entry lists every activity per day (with times where given), alternative seasonal activities, and optional add-ons (Baybayin Affirmation, Tree Planting).
+
+**Read this file when:**
+- Writing or editing any tour package description, card content, or itinerary display
+- Adding or changing activities in `DataContext` or `ManageActivities`
+- Building the Packages page, quick-view modals, or booking flows
+- Writing chatbot (`SupportChatbot`) responses about what packages include
+- Translating package content into any of the five supported languages
+
+### TAHAK Team — [`TAHAK_TEAM.md`](./TAHAK_TEAM.md)
+
+Contains the full team composition, academic disciplines, individual role descriptions, the project mentor, social mission statement, SDG alignment (SDG 3, 8, 11), revenue model, and 3-year impact targets.
+
+**Team members:**
+- Jovit C. Camata — Tourism Management
+- Jiezel P. Costuna — Tourism Management
+- Mark Alfred M. Ella — Tourism Management
+- Buhawie F. Santos — Information Technology
+- Eliza Rose R. Margallo — Biology
+- **Mentor:** Professor David John D. Apigo
+
+**Read this file when:**
+- Editing the "Our Team" page or any about/team section
+- Writing mission, vision, or impact copy
+- Referencing team member names, roles, or disciplines anywhere in the UI
+- Adding SDG badges or impact metrics to any page
+- Drafting partner or investor-facing content
+
+### System Design — [`SYSDESIGN/system-design.md`](./SYSDESIGN/system-design.md)
+
+Full architectural reference: component tree, data flow, auth design, admin bypass mechanism, Supabase schema, and known issues.
+
+**Read this file when:**
+- Making architectural or routing decisions
+- Adding new contexts, state management, or data persistence
+- Changing auth flows or the admin credential bypass
+- Investigating bugs that span multiple layers
+
+### Security — [`SECURITY.md`](./SECURITY.md)
+
+Security audit report covering 15 findings across severity levels, remediation priority order, and a running fix changelog.
+
+**Read this file when:**
+- Changing authentication, authorization, or session handling
+- Adding or modifying any admin access control
+- Handling user input, form data, or Supabase queries
+- Deploying or configuring environment variables
+
+---
+
+## 9. Key File Index (Quick Reference)
 
 | File                                  | What it does                                         |
 |---------------------------------------|------------------------------------------------------|
@@ -373,6 +447,8 @@ Be specific: name the files created or changed, describe what they do, and note 
 | `src/hooks/useInView.jsx`             | Viewport intersection observer for scroll animations |
 | `SYSDESIGN/system-design.md`         | Full system design document with architecture diagrams, data flow, and known issues |
 | `SECURITY.md`                        | Security audit report — 15 findings, remediation priority order, and fix changelog  |
+| `TOUR_PACKAGES.md`                   | Canonical tour package itineraries — Kapwa (3D2N), Ugnayan (2D1N), Sama-Sama (Day Tour) with full activity breakdowns and optional add-ons |
+| `TAHAK_TEAM.md`                      | Team profiles, academic disciplines, mentor info, social mission, SDG targets, and revenue model |
 | `src/tests/setup.js`                 | Vitest global setup — asset mocks, localStorage clear |
 | `src/tests/`                         | All test files — 159 tests across 13 files |
 | `DOCS/CATALOG.md`                    | **Read first** — complete inventory of every hook, component, layout, context, and utility |

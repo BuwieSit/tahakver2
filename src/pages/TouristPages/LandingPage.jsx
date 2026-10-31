@@ -147,7 +147,7 @@ const partners = [
     },
     {
         name: "Peace in Nature Farm",
-        location: "Sta. Lucia, Quezon",
+        location: "Dolores, Quezon",
         description: "Natural spring swimming pools, fruit orchards, and regenerative agriculture.",
         image: peaceInNature,
         alt: "Peace in Nature Farm Resort",
@@ -198,11 +198,8 @@ export default function LandingPage() {
                     <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-accent/50 to-accent/90" />
 
                     <div className="relative z-20 mx-auto flex max-w-5xl flex-col items-center px-6 pb-16 pt-24 text-center text-white md:px-12">
-                        {/* Eyebrow Pill */}
-                        <div className="mb-6 inline-flex animate__animated animate__fadeInDown items-center gap-2.5 rounded-full border border-white/25 bg-white/15 px-5 py-2 text-xs font-semibold tracking-wide shadow-lg backdrop-blur-md md:text-sm">
-                            <Award className="h-4 w-4 shrink-0 text-emerald-300" />
-                            <span>The 1st Wellness Tour Operator in Quezon Province</span>
-                        </div>
+   
+               
 
                         {/* Title in Libre Baskerville */}
                         <h1 className="mb-6 animate__animated animate__fadeIn font-primary-title text-4xl font-normal leading-[1.1] drop-shadow-2xl sm:text-6xl md:text-7xl lg:text-8xl">
@@ -246,7 +243,7 @@ export default function LandingPage() {
                             </div>
                             <div className="col-span-2 flex items-center justify-center gap-2 sm:col-span-1">
                                 <MapPin className="h-4 w-4 shrink-0 text-emerald-300" />
-                                <span>Sta. Lucia, Quezon Foothills</span>
+                                <span>Dolores, Quezon Foothills</span>
                             </div>
                         </div>
                     </div>
@@ -283,7 +280,7 @@ export default function LandingPage() {
                                     Sanctuary Ground
                                 </span>
                                 <h2 className="font-primary-title text-xl md:text-2xl">
-                                    Sta. Lucia & Dolores, Quezon
+                                    Dolores, Quezon
                                 </h2>
                                 <p className="mt-1 text-xs text-white/80 md:text-sm">
                                     At the blessed foothills of mystical Mount Banahaw
@@ -592,7 +589,7 @@ export default function LandingPage() {
                             </h2>
 
                             <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl">
-                                Escape the noise of the city. Reserve your healing sanctuary in Sta. Lucia, Quezon today and experience the rejuvenating harmony of TAHAK.
+                                Escape the noise of the city. Reserve your healing sanctuary in Dolores, Quezon today and experience the rejuvenating harmony of TAHAK.
                             </p>
 
                             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">

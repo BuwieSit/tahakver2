@@ -22,7 +22,7 @@ export default function Header() {
     };
 
     // Define pages that have a dark hero section at the top
-    const isHeroPage = location.pathname === '/' || location.pathname === '/our-story' || location.pathname === '/landing';
+    const isHeroPage = location.pathname === '/' || location.pathname === '/our-story' || location.pathname === '/landing' || location.pathname === '/our-team';
     
     // Determine text and button colors based on scroll and page type
     const textColor = isScrolled 
